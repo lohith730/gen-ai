@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Classifier | AI Powered</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Animated Background Shapes -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+
+    <div class="container">
+        <div class="nav-brand">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>EmailClassifier</span>
+        </div>
+
+        <div class="glass-card">
+            <section class="left-panel">
+                <h1>Classify Your Emails</h1>
+                <div class="subtitle">Experience the power of AI to organize your inbox instantly.</div>
+
+                <form method="POST">
+                    <label for="email">Email Content</label>
+                    <textarea id="email" name="email" placeholder="Paste your email content here..."
+                        required>{{ email_text }}</textarea>
+
+                    <button type="submit" class="btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Analyze Content
+                    </button>
+                </form>
+
+                {% if prediction %}
+                <div class="result-box">
+                    <div class="info-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        Analysis Result
+                    </div>
+
+                    <div style="margin: 15px 0;">
+                        {% if prediction == 'Urgent' %}
+                        <div class="badge urgent">🚨 URGENT PRIORITY</div>
+                        {% elif prediction == 'Financial' %}
+                        <div class="badge fin">💰 FINANCIAL</div>
+                        {% elif prediction == 'HR' %}
+                        <div class="badge hr">👥 HUMAN RESOURCES</div>
+                        {% else %}
+                        <div class="badge gen">📝 GENERAL INQUIRY</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="info-title" style="font-size: 0.9rem; margin-top: 20px;">Original Content Preview</div>
+                    <div class="preview-text">{{ email_text }}</div>
+                </div>
+                {% endif %}
+            </section>
+
+            <aside class="right-panel">
+                <div>
+                    <div class="info-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        How it works
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                        Our advanced AI model analyzes the semantic context of your emails to categorize them into
+                        actionable groups.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="info-title">How to Use</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-top:6px;">
+                        1) Paste the full email content on the left. <br>
+                        2) Click <strong>Analyze Content</strong>. <br>
+                        3) Review the predicted category and original preview below the result.
+                    </p>
+
+                    <div style="height:12px"></div>
+                    <div class="info-title">Tips for Better Results</div>
+                    <ul class="info-list" style="margin-top:8px">
+                        <li>Include the full message body (not just subject) for best context.</li>
+                        <li>Use clear phrases like "urgent", "invoice", or "leave request" when testing.</li>
+                        <li>Retrain the model with labeled examples to improve accuracy on your data.</li>
+                    </ul>
+
+                    <div style="height:12px"></div>
+                    <div class="info-title">Feedback</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; margin-top:6px;">
+                        If results feel off, collect a few correctly-labeled examples and retrain the model. For quick
+                        feedback, email <a href="mailto:you@example.com">you@example.com</a>.
+                    </p>
+                </div>
+
+                <div style="margin-top: auto;">
+                    <div class="info-title" style="font-size: 0.8rem; opacity: 0.7;">System Status</div>
+                    <div
+                        style="color: var(--success); font-size: 0.8rem; display: flex; align-items: center; gap: 6px;">
+                        <span
+                            style="width: 8px; height: 8px; background: var(--success); border-radius: 50%; display: inline-block;"></span>
+                        Model Loaded & Ready
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="footer">
+            &copy; 2025 Email Classifier AI. Designed for efficiency.
+        </footer>
+    </div>
+
+</body>
+
+</html>
