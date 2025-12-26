@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Login — Email Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:linear-gradient(180deg,#f5f7ff,#fff)}
+        .login-card{width:420px;background:#fff;border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.08);}
+        h2{margin:0 0 10px 0}
+        .muted{color:#6b7280;font-size:14px}
+        label{display:block;margin-top:12px;font-weight:600}
+        input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6edf3;margin-top:6px}
+        .btn{margin-top:18px;padding:10px 14px;background:#6c5ce7;color:#fff;border:0;border-radius:8px;font-weight:700;cursor:pointer;width:100%}
+        .flash{background:#fff7f7;border:1px solid #ffdede;padding:10px;border-radius:8px;color:#ef4444;margin-bottom:12px}
+        .small{font-size:13px;color:#9ca3af;margin-top:10px}
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Login — Email Classifier</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+
+        <div class="container">
+            <div class="nav-brand">EmailClassifier</div>
+
+            <div class="glass-card" style="max-width:900px;margin:0 auto;">
+                <section class="left-panel">
+                    <h1>Welcome Back</h1>
+                    <div class="subtitle">Sign in to manage and analyze your email content with AI.</div>
+
+                    <div style="margin-top:18px;color:var(--text-muted);">
+                        <strong>Why sign in?</strong>
+                        <p style="margin-top:8px;">Signing in keeps your testing private and allows access to model tools.</p>
+                    </div>
+
+                    <div style="margin-top:18px;color:var(--text-muted);">
+                        <div class="info-title">Quick Tips</div>
+                        <ul class="info-list">
+                            <li>Paste full email content (including body) for best classification.</li>
+                            <li>Use this demo account only for development.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <aside class="right-panel">
+                    <div style="width:100%">
+                        <div class="info-title">Sign In</div>
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, msg in messages %}
+                            <div class="result-box" style="border-color:var(--danger);color:var(--danger);background:rgba(255,118,117,0.06);">{{ msg }}</div>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+
+                        <form method="POST" style="margin-top:12px">
+                            <label for="username">Username</label>
+                            <input id="username" name="username" placeholder="admin" required style="width:100%;padding:12px;border-radius:8px;border:1px solid var(--glass-border);background:transparent;color:var(--text-main)">
+
+                            <label for="password">Password</label>
+                            <input id="password" name="password" type="password" placeholder="password123" required style="width:100%;padding:12px;border-radius:8px;border:1px solid var(--glass-border);background:transparent;color:var(--text-main)">
+
+                            <button class="btn" type="submit">Sign In</button>
+                        </form>
+
+                        <div style="margin-top:12px;color:var(--text-muted);font-size:0.9rem">Demo credentials: <strong>admin</strong> / <strong>password123</strong></div>
+                    </div>
+                </aside>
+            </div>
+
+            <footer class="footer">&copy; 2025 Email Classifier AI. Designed for efficiency.</footer>
+        </div>
+
+    </body>
+    </html>
